@@ -1176,8 +1176,10 @@ struct rtw_regulatory {
 };
 #endif
 
-#if !defined(dev_addr_set)
-#define dev_addr_set(_a, _b) memcpy(_a, _b, ETH_ALEN)
-#endif
+// #if !defined(dev_addr_set)
+// 1st member of dev is a name, not a mac address !
+// #define dev_addr_set(_a, _b) memcpy(_a, _b, ETH_ALEN)
+// #error "!defined(dev_addr_set)"
+// #endif
 
 #endif // _WIFI_H_
