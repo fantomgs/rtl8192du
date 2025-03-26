@@ -159,6 +159,9 @@ int rtw_mac_phy_mode = 0; //0:by efuse, 1:smsp, 2:dmdp, 3:dmsp.
 int rtw_80211d = 0;
 #endif
 
+u32 rtw_log_level = _drv_err_;
+module_param(rtw_log_level, int, 0644);
+
 char* ifname = "wlan%d";
 module_param(ifname, charp, 0644);
 MODULE_PARM_DESC(ifname, "The default name to allocate for first interface");

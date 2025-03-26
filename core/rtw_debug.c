@@ -24,7 +24,7 @@
 
 //#ifdef CONFIG_DEBUG_RTL871X
 
-	u32 GlobalDebugLevel = _drv_err_;
+	u32 GlobalDebugLevel = _drv_err_; // will be overwriten by rtw_log_level
 
 	u64 GlobalDebugComponents = \
 			_module_rtl871x_xmit_c_ |

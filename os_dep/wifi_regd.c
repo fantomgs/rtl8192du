@@ -307,7 +307,8 @@ static int _rtw_reg_notifier_apply(struct wiphy *wiphy,
 {
 
 	/* Hard code flags */
-	_rtw_reg_apply_flags(wiphy);
+	// skip applying hardcoded flags coz all channels will be disabled before rtw_init_drv_sw is called and regd notify occured
+	// _rtw_reg_apply_flags(wiphy);
 
 	/* We always apply this */
 	_rtw_reg_apply_radar_flags(wiphy);
@@ -371,7 +372,8 @@ static void _rtw_regd_init_wiphy(struct rtw_regulatory *reg,
 	wiphy_apply_custom_regulatory(wiphy, regd);
 
 	/* Hard code flags */
-	_rtw_reg_apply_flags(wiphy);
+	// skip applying hardcoded flags coz all channels will be disabled before rtw_init_drv_sw is called and regd notify occured
+	// _rtw_reg_apply_flags(wiphy);
 	_rtw_reg_apply_radar_flags(wiphy);
 	_rtw_reg_apply_world_flags(wiphy, NL80211_REGDOM_SET_BY_DRIVER, reg);
 }
@@ -387,12 +389,12 @@ static struct country_code_to_enum_rd *_rtw_regd_find_country(u16 countrycode)
 	return NULL;
 }
 
-int rtw_regd_init(_adapter * padapter,
+int rtw_regd_init(struct wiphy * wiphy,
 		  void (*reg_notifier)(struct wiphy * wiphy,
 				       struct regulatory_request * request))
 {
 	//struct registry_priv  *registrypriv = &padapter->registrypriv;
-	struct wiphy *wiphy = padapter->rtw_wdev->wiphy;
+	// struct wiphy *wiphy = padapter->rtw_wdev->wiphy;
 
 
 	_rtw_regd_init_wiphy(NULL, wiphy, reg_notifier);

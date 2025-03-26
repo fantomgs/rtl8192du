@@ -5604,6 +5604,9 @@ int rtw_wdev_alloc(_adapter *padapter, struct device *dev)
 	*((_adapter**)wiphy_priv(wiphy)) = padapter;
 	rtw_cfg80211_preinit_wiphy(padapter, wiphy);
 
+	/* init regulatory domain */
+	rtw_regd_init(wiphy, rtw_reg_notifier);
+	
 	memcpy(wiphy->perm_addr, padapter->eeprompriv.mac_addr, ETH_ALEN);
 	memcpy(wiphy->addr_mask, addr_mask, ETH_ALEN);
 	ret = wiphy_register(wiphy);
@@ -5653,7 +5656,8 @@ int rtw_wdev_alloc(_adapter *padapter, struct device *dev)
 #endif
 
 	/* init regulary domain */
-	rtw_regd_init(padapter, rtw_reg_notifier);
+	// should be called prior wiphy_register
+	// rtw_regd_init(padapter, rtw_reg_notifier);
 
 //	rtw_mfree((u8*)wdev, sizeof(struct wireless_dev));
 	return ret;

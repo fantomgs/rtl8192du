@@ -120,7 +120,7 @@ static ssize_t proc_set_log_level(struct file *file, const char __user *buffer, 
 		if( log_level >= _drv_always_ && log_level <= _drv_debug_ )
 		{
 			GlobalDebugLevel= log_level;
-			printk("%d\n", GlobalDebugLevel);
+			pr_info(DRIVER_PREFIX "set GlobalDebugLevel = %d\n", GlobalDebugLevel);
 		}
 	} else {
 		return -EFAULT;
